@@ -1,0 +1,60 @@
+# Fixture
+
+- model: "employee.employee"
+  pk: 1
+  fields:
+    full_name: "John Doe"
+    birthdate: "1990-01-01"
+
+- model: "employee.employee"
+  pk: 2
+  fields:
+    full_name: "Jane Doe"
+    birthdate: "1992-05-15"
+
+- model: "client.client"
+  pk: 1
+  fields:
+    full_name: "Client One"
+    birthdate: "1985-08-20"
+
+- model: "client.client"
+  pk: 2
+  fields:
+    full_name: "Client Two"
+    birthdate: "1988-12-10"
+
+- model: "product.product"
+  pk: 1
+  fields:
+    name: "Product One"
+    quantity: 10
+    price: "25.00"
+
+- model: "product.product"
+  pk: 2
+  fields:
+    name: "Product Two"
+    quantity: 5
+    price: "50.00"
+
+- model: "order.order"
+  pk: 1
+  fields:
+    client: 1
+    employee: 1
+    price: "100.00"
+    date: "2023-01-15"
+    products:
+      - 1
+      - 2
+
+- model: "order.order"
+  pk: 2
+  fields:
+    client: 2
+    employee: 2
+    price: "75.00"
+    date: "2023-02-20"
+    products:
+      - 1

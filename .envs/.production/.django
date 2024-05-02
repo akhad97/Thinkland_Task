@@ -1,0 +1,5 @@
+PROJECT_NAME=TestProj
+DJANGO_SETTINGS_MODULE=config.settings.production
+SECRET_KEY=p8880lm2-f@to@vw^h8#^538j^2r#0-^$kqc)5^%-g$1ntk3#=
+DEBUG=True
+

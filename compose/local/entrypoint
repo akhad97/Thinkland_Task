@@ -1,0 +1,7 @@
+# Run database migrations.  (Should be safe, if inefficient, to run
+# multiple times concurrently.)
+
+python manage.py migrate
+
+# Run whatever command we got passed.
+exec "$@"
