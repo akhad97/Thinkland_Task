@@ -20,6 +20,20 @@ class ProductSerializer(serializers.ModelSerializer):
         self.fields['category'] = CategorySerializer()
         data = super().to_representation(instance)
         return data
+    
+
+class ProductUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = (
+            'id',
+            'guid',
+            'category',
+            'title',
+            'price',
+            'image',
+            'description'
+        )
 
 
 class ProductCreateSerializer(serializers.ModelSerializer):

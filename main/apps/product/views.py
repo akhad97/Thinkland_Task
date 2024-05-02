@@ -1,12 +1,11 @@
 from rest_framework import generics 
 from .models import Product
-from .serializer import ProductCreateSerializer, ProductSerializer
+from .serializer import ProductCreateSerializer, ProductSerializer, ProductUpdateSerializer
 from ..common.pagination import CustomPagination
 from .documents import ProductDocument
 from rest_framework import permissions
 from rest_framework_simplejwt import authentication
-from elasticsearch_dsl import Search
-from elasticsearch_dsl import Q
+from elasticsearch_dsl import Q, Search
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -14,9 +13,8 @@ from rest_framework.response import Response
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     pagination_class = CustomPagination
-    # authentication_classes = [authentication.JWTAuthentication]
-    # permission_classes = [permissions.IsAuthenticated]
-
+    authentication_classes = [authentication.JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -50,9 +48,15 @@ product_search_api_view = ProductSearch.as_view()
 
 class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
     authentication_classes = [authentication.JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+    lookup_field='guid'
+
+    def get_serializer_class(self):
+        if self.request.method == 'PUT' or 'PATCH':
+            return ProductUpdateSerializer
+        else:
+            return ProductSerializer
 
 product_retrieve_update_delete_api_view = ProductDetailView.as_view()
 
